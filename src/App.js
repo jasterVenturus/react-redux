@@ -1,10 +1,16 @@
 import React from 'react';
-import Counter from './features/Counter/Counter'
+import AddPostForm from './features/Posts/AddPostForm/AddPostForm';
+import PostsList from './features/Posts/PostsList/PostsList';
+import { GlobalStyle } from "./styles/global";
+
 function App() {
   return (
-    <div className="App">
-      <Counter/>
-    </div>
+    <main className="app">
+      {/* <Counter/> */}
+      <AddPostForm />
+      <PostsList />
+      <GlobalStyle />
+    </main>
   );
 }
 
