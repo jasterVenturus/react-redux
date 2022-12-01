@@ -1,28 +1,48 @@
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch} from 'react-redux';
+import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from '../postsSlice';
+import PostsExcerpt from '../PostsExcerpt/PostsExcerpt';
 
-import React from 'react'
-import { selectAllPosts } from '../postsSlice';
 import { Container } from './style';
 
 const PostsList = () => {
 
+    const dispatch = useDispatch();
     const posts = useSelector(selectAllPosts);
+    const postStatus = useSelector(getPostsStatus);
+    const postError = useSelector(getPostsError);
 
-    const renderedPosts = posts.map( post => (
+    useEffect(() => {
+        if (postStatus === 'idle') {
+            dispatch(fetchPosts());
+        } 
 
-        <article key={ post.id }>
-            <h3>{post.title}</h3>
-            <p>{post.content.substring(0,100)}</p>
-        </article>
-    ));
+    }, [postStatus, dispatch]);
+
+    let content;
+
+    if (postStatus === 'loading') {
+
+        content = <p>Loading...</p>
+    } else if (postStatus === 'succeeded') {
+
+        const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
+        content = orderedPosts.map( (post, index) => {
+            return <PostsExcerpt key={post.id} post={post} />
+        });
+    } else if (postStatus === 'failed') {
+
+        content = <p>{postError}</p>
+    }
+
     return (
         <Container>
             <div className="wrapper">
                 <h2>Posts</h2>
-                {renderedPosts}
+                {content}
             </div>
         </Container>
     )
 }
 
-export default PostsList
+export default PostsList;
