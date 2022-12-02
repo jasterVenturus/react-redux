@@ -22,12 +22,6 @@ function App() {
       </Routes>
       <GlobalStyle />
     </>
-    // <main className="app">
-    //   {/* <Counter/> */}
-    //   <AddPostForm />
-    //   <PostsList />
-    //   
-    // </main>
   );
 }
 
