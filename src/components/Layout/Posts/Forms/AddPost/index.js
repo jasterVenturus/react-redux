@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Container } from './style';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewPost } from '../postsSlice';
-import { selectAllUsers } from '../../Users/usersSlice';
+import { addNewPost } from '../../../../../features/Posts/postsSlice';
+import { selectAllUsers } from '../../../../../features/Users/usersSlice';
 
-const AddPostForm = () => {
+const AddPost = () => {
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState('');
@@ -76,4 +76,4 @@ const AddPostForm = () => {
     );
 };
 
-export default AddPostForm;
+export default AddPost;

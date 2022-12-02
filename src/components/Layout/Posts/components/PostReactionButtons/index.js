@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
-import { reactionAdded } from '../postsSlice';
+import { reactionAdded } from '../../../../../features/Posts/postsSlice';
 import { Container } from './style';
 
 const reactionEmoji = {

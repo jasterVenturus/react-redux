@@ -10,8 +10,6 @@ export const Container = styled.section`
 
     padding: 1rem 0;
     
-    border: 1px solid;
-
     h2 {
         margin-bottom: 1rem;
     }

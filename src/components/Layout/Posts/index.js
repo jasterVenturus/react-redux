@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch} from 'react-redux';
-import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from '../postsSlice';
-import PostsExcerpt from '../PostsExcerpt/PostsExcerpt';
+import PostsExcerpt from '../../../components/Layout/Posts/components/PostsExcerpt/index';
+import { selectAllPosts, getPostsStatus, getPostsError, fetchPosts } from '../../../features/Posts/postsSlice';
 
 import { Container } from './style';
 
@@ -27,7 +27,7 @@ const PostsList = () => {
     } else if (postStatus === 'succeeded') {
 
         const orderedPosts = posts.slice().sort((a, b) => b.date.localeCompare(a.date));
-        content = orderedPosts.map( (post, index) => {
+        content = orderedPosts.map( (post) => {
             return <PostsExcerpt key={post.id} post={post} />
         });
     } else if (postStatus === 'failed') {
@@ -38,7 +38,6 @@ const PostsList = () => {
     return (
         <Container>
             <div className="wrapper">
-                <h2>Posts</h2>
                 {content}
             </div>
         </Container>
