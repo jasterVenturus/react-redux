@@ -5,6 +5,7 @@ import PostsList from './components/Layout/Posts/index';
 import { GlobalStyle } from "./styles/global";
 import SinglePostPage from './components/Layout/Posts/components/SinglePost';
 import AddPost from './components/Layout/Posts/Forms/AddPost';
+import EditPost from './components/Layout/Posts/Forms/EditPost';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
 
             <Route index element={ <AddPost /> } />
             <Route path=':postId' element={ <SinglePostPage /> } />
+            <Route path='edit/:postId' element={ <EditPost/> } />
           </Route>
         </Route>
       </Routes>
